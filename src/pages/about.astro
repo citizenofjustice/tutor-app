@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
+import Layout from "../layouts/Layout.astro";
+import AboutListItem from "../components/AboutListItem.astro";
+
+const about = await getCollection("about");
+---
+
+<Layout title="Обо мне | Репититор по биологии, анатомии и т.д.">
+    <Main>
+        <H1 text="Обо мне"/>
+        <div class="flex gap-x-8 max-sm:flex-col">
+            <div class="py-3 gap-x-8 flex justify-center items-center">
+                <img class="w-full rounded-md max-w-sm" src={about[0].data.photo} />
+            </div>
+            <ul class="divide-y-2">
+                <AboutListItem key="Имя:" value={about[0].data.name} />
+                <AboutListItem key="Образование:" value={about[0].data.education} />
+                <AboutListItem key="Эл. почта:" value={about[0].data.email} />
+                <AboutListItem key="Телефон:" value={about[0].data.phone} />
+            </ul>
+        </div>
+        </Main>
+    </Layout>
