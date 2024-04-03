@@ -1,5 +1,7 @@
 ---
+import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -20,10 +22,12 @@ const { title, description = 'Репетитор для подготовки к 
 		<meta name="generator" content={Astro.generator} />
 		<meta property="og:image" content={image} />
 		<title>{title}</title>
+		<ViewTransitions />
 	</head>
 	<body class="min-h-screen">
 		<Header />
 		<slot />
+		<Footer />
 	</body>
 </html>
 <style is:global>

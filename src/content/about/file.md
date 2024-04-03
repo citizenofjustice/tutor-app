@@ -1,5 +1,5 @@
 ---
-photo: /images/photo.avif
+photo: /src/images/photo.avif
 name: Александра Петрова
 education: Санкт-Петербургский государственный медицинский университет им. акад. И.П. Павлова
 email: a.petrova.study@ya.ru
