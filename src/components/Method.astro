@@ -1,17 +1,24 @@
 ---
-import { getCollection } from "astro:content";
+import type { z } from "astro:content";
+import { Icon } from 'astro-icon/components';
+import type { methodSchema } from "../content/config";
 
-const homepage = await getCollection("homepage");
+
+interface Props {
+  methods: z.infer<typeof methodSchema>[],
+}
+
+const { methods } = Astro.props;
 ---
 
 <section >
     <ul class="flex max-lg:flex-col flex-row justify-evenly gap-4">
-        {homepage[0].data.methods.map((method)=>
-            <li class="max-lg:flex max-vsm:flex-col max-vsm:items-center max-lg:flex-row max-lg:gap-x-5 block max-lg:max-w-none max-w-64 border-2 rounded-md p-4 max-lg:space-y-0 space-y-3">
+        {methods.map((method)=>
+            <li class="max-lg:flex max-vsm:flex-col max-vsm:items-center max-lg:flex-row max-lg:gap-x-5 block max-lg:max-w-none max-w-64 shadow shadow-primary-200 border-primary-200 rounded-md p-4 max-lg:space-y-0 space-y-3 bg-secondary-50">
                 <div class="max-lg:w-12 max-lg:shrink-0 flex justify-center items-center">
-                    <img src={method.icon} alt={method.alt} width={60} height={60}/>
+                    <Icon name={method.icon} title={method.alt} width={60} height={60} class={`${method.color}`}/>
                 </div>
-                <div class="max-lg:grow max-lg:text-start max-vsm:text-center grid grid-rows-[minmax(0,1fr)] text-center gap-y-1">
+                <div class="max-lg:grow max-lg:text-start max-vsm:text-center grid grid-rows-[minmax(0,1fr)] text-center text-text-800 gap-y-1">
                     <h2 class="self-center font-bold">{method.title}</h2>
                     <p class="text-sm">{method.description}</p>
                 </div>

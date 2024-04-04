@@ -1,0 +1,32 @@
+---
+import H1 from "../components/H1.astro";
+import Main from "../components/Main.astro";
+import Layout from "../layouts/Layout.astro";
+
+import { getEntry } from 'astro:content';
+const prices = await getEntry("prices", "index");
+const { title, disciplines } = prices.data;
+
+---
+
+<Layout title="Обо мне | Репетитор по биологии, анатомии и т.д.">
+    <Main>
+        <H1 text={title}/>
+        <table class="border-separate border-spacing-1 rounded border border-red-500 text-text-800 w-full">
+            <thead>
+                <tr class="rounded-t-lg font-bold bg-primary-200">
+                    <td class="border rounded border-secondary-300 px-3 py-1">Дисциплина</td>
+                    <td class="border rounded border-secondary-300 px-3 py-1 text-center">Цена (за 60 мин.)</td>
+                </tr>
+            </thead>
+            <tbody>
+                {disciplines.map(discipline =>
+                    <tr class="bg-secondary-50">
+                        <td class="border rounded border-secondary-300 px-3 py-1">{discipline.label}</td>
+                        <td class="border rounded border-secondary-300 px-3 py-1 text-end">{discipline.price}</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
+    </Main>
+</Layout>

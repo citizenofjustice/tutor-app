@@ -1,33 +1,68 @@
 import { defineCollection, z } from "astro:content";
 
-const methodSchema = z.object({
+export const methodSchema = z.object({
   icon: z.string(),
   alt: z.string(),
+  color: z.string(),
   title: z.string(),
   description: z.string(),
 });
 
-const homepageCollection = defineCollection({
+const reviewsCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
-      title: z.string(),
-      image: image(),
-      methods: z.array(methodSchema),
+      reviews: z.array(
+        z.object({
+          author: z.string(),
+          photo: image(),
+          discipline: z.string(),
+          text: z.string(),
+        })
+      ),
     }),
+});
+
+const homepageCollection = defineCollection({
+  schema: z.object({
+    greet: z.object({
+      title: z.string(),
+    }),
+    methods: z.array(methodSchema),
+    // reviews: z.array(
+    //   z.object({
+    //     author: z.string(),
+    //     photo: image(),
+    //     discipline: z.string(),
+    //     text: z.string(),
+    //   })
+    // ),
+  }),
 });
 
 const aboutCollection = defineCollection({
-  schema: ({ image }) =>
-    z.object({
-      photo: image(),
-      name: z.string(),
-      education: z.string(),
-      email: z.string().email(),
-      phone: z.string(),
-    }),
+  schema: z.object({
+    name: z.string(),
+    education: z.string(),
+    email: z.string().email(),
+    phone: z.string(),
+  }),
+});
+
+const pricesCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    disciplines: z.array(
+      z.object({
+        label: z.string(),
+        price: z.string(),
+      })
+    ),
+  }),
 });
 
 export const collections = {
-  homepage: homepageCollection,
+  index: homepageCollection,
   about: aboutCollection,
+  reviews: reviewsCollection,
+  prices: pricesCollection,
 };

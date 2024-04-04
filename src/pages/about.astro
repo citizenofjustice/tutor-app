@@ -8,16 +8,17 @@ import AboutListItem from "../components/AboutListItem.astro";
 import { Image } from "astro:assets";
 
 const about = await getCollection("about");
+import tutorPhoto from '../images/photo.avif';
 ---
 
 <Layout title="Обо мне | Репетитор по биологии, анатомии и т.д.">
     <Main>
         <H1 text="Обо мне"/>
-        <div class="flex gap-x-8 max-sm:flex-col items-center">
+        <div class="flex gap-x-8 max-sm:flex-col items-center text-text-800">
             <div class="py-3 gap-x-8 flex justify-center items-center w-full max-w-96 max-sm:max-w-56">
-                <Image class="rounded-md" src={about[0].data.photo} alt="Фото репетитора" />
+                <Image class="rounded-md" src={tutorPhoto} alt="Фото репетитора" />
             </div>
-            <ul class="divide-y-2 flex flex-col justify-center">
+            <ul class="divide-y-2 divide-primary-300 flex flex-col justify-center">
                 <AboutListItem key="Имя:" value={about[0].data.name} />
                 <AboutListItem key="Образование:" value={about[0].data.education} />
                 <AboutListItem key="Эл. почта:" value={about[0].data.email} />

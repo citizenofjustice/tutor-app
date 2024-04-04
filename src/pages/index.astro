@@ -3,13 +3,19 @@ import Main from '../components/Main.astro';
 import Layout from '../layouts/Layout.astro';
 import Method from '../components/Method.astro';
 import GreetingCard from '../components/GreetingCard.astro';
+
+import { getEntry } from 'astro:content';
+import Reviews from '../components/Reviews.astro';
+const homepage = await getEntry("homepage", "index");
+const { methods, reviews } = homepage.data;
 ---
 
 <Layout title="Репетитор по биологии, анатомии и т.д.">
 	<Main>
 		<div class="space-y-12">
 			<GreetingCard />
-			<Method />
+			<Method methods={methods} />
+			<Reviews reviews={reviews} />
 		</div>
 	</Main>
 </Layout>
