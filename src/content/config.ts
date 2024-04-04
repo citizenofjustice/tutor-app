@@ -1,8 +1,46 @@
 import { defineCollection, z } from "astro:content";
 
+export const methodSchema = z.object({
+  icon: z.string(),
+  alt: z.string(),
+  color: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
+const reviewsCollection = defineCollection({
+  schema: ({ image }) =>
+    z.object({
+      reviews: z.array(
+        z.object({
+          author: z.string(),
+          photo: image(),
+          discipline: z.string(),
+          text: z.string(),
+        })
+      ),
+    }),
+});
+
+const homepageCollection = defineCollection({
+  schema: z.object({
+    greet: z.object({
+      title: z.string(),
+    }),
+    methods: z.array(methodSchema),
+    // reviews: z.array(
+    //   z.object({
+    //     author: z.string(),
+    //     photo: image(),
+    //     discipline: z.string(),
+    //     text: z.string(),
+    //   })
+    // ),
+  }),
+});
+
 const aboutCollection = defineCollection({
   schema: z.object({
-    photo: z.string(),
     name: z.string(),
     education: z.string(),
     email: z.string().email(),
@@ -10,6 +48,21 @@ const aboutCollection = defineCollection({
   }),
 });
 
+const pricesCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    disciplines: z.array(
+      z.object({
+        label: z.string(),
+        price: z.string(),
+      })
+    ),
+  }),
+});
+
 export const collections = {
+  index: homepageCollection,
   about: aboutCollection,
+  reviews: reviewsCollection,
+  prices: pricesCollection,
 };

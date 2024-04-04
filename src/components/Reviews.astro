@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
+const reviewContent = await getEntry("reviews", "index");
+const { reviews } = reviewContent.data;
+---
+
+<section class="space-y-4">
+    <h2 class="text-2xl font-bold indent-8 bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent w-fit">Отзывы учеников</h2>
+    <ul class="grid grid-cols-4 max-xl:grid-cols-2 max-sm:grid-cols-1 max-xl:grid-rows-2 max-sm:grid-rows-none items-stretch mx-auto gap-4 w-fit">
+        {reviews.map((review)=>
+            <li class="shadow shadow-primary-200 rounded-lg bg-secondary-50 max-w-72 max-sm:max-w-none p-4">
+                <div class="flex gap-2 w-full text-text-800"> 
+                    <div class="w-[60px] h-[60px] shrink-0">
+                        <Image src={review.photo} alt="Фото ученика" width={60} height={60} class="rounded-full aspect-square" />
+                    </div>
+                    <div>
+                        <p class="font-bold">{review.author}</p>
+                        <p class="font-semibold text-sm break-words">{review.discipline}</p>
+                    </div>
+                </div>
+                <div class="text-sm mt-2">
+                    {review.text}
+                </div>
+            </li>
+        )}
+    </ul>
+</section>
