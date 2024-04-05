@@ -21,9 +21,18 @@ import tutorPhoto from '../images/photo.avif';
             <ul class="divide-y-2 divide-primary-300 flex flex-col justify-center">
                 <AboutListItem key="Имя:" value={about[0].data.name} />
                 <AboutListItem key="Образование:" value={about[0].data.education} />
+                <AboutListItem key="Опыт репетиторства:" value={about[0].data.experince} />
                 <AboutListItem key="Эл. почта:" value={about[0].data.email} />
                 <AboutListItem key="Телефон:" value={about[0].data.phone} />
             </ul>
+        </div>
+        <div class="max-sm:border-t-2 max-sm:border-primary-300 max-sm:pt-2">
+            <h2 class="prose text-lg font-bold text-text-800">Кратко о себе:</h2>
+            <div class="space-y-3">
+                {about[0].data.aboutMe.map(paragraph=>
+                <p class="prose max-w-screen-2xl indent-10 text-text-800">{paragraph}</p>
+            )}
+            </div>
         </div>
     </Main>
 </Layout>

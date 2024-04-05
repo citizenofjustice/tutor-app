@@ -1,33 +1,57 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+import menu from "../config/menu.json"
+
+interface Social {
+    name: string,
+    url: string,
+}
+interface FooterCategoryItem {
+    name: string,
+    url: string
+}
+interface FooterMenu {
+    category: string,
+    items: FooterCategoryItem[]
+}
+interface Footer {
+    footerMenu: FooterMenu[],
+    socials: Social[],
+}
+const { footer }: { footer: Footer } = menu;
 ---
 
 <footer class="bottom-0 bg-primary-500 rounded-t-2xl">
     <div class="px-24 pt-10 pb-2 max-sm:px-5 max-sm:pt-6 max-sm:pb-2 max-w-7xl mx-auto">
-        <div class="flex justify-between">
-            <ul class="flex items-center gap-3 text-background-50">
-                <li class="font-semibold">Связаться</li>
-            </ul>
-            <ul class="flex items-center gap-3">
+        <div class="flex max-vsm:flex-col justify-between space-x-2 max-vsm:space-y-4 max-vsm:space-x-0">
+            {footer.footerMenu.map((footerMenu: FooterMenu) => 
+                <ul class="text-background-50">
+                    <li class="font-bold underline decoration-primary-200">{footerMenu.category}</li>
+                    <li>
+                        <ul class="grid items-center grid-cols-1 max-vsm:grid-cols-3 max-vvsm:grid-cols-2 gap-y-1.5">
+                            {footerMenu.items.map((menuItem: FooterCategoryItem)=>
+                                <li class="font-light max-vsm:text-center">
+                                    <a href={menuItem.url}>{menuItem.name}</a>
+                                    </li>
+                                )}
+                        </ul>
+                    </li>
+                </ul>
+            )}
+            <ul class="text-background-50">
+                <li class="font-bold underline decoration-primary-200">Соц. сети</li>
                 <li>
-                    <a href="https://www.instagram.com/" target="_blank">
-                        <Icon name="instagram" title="Иконка инстаграма" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://facebook.com" target="_blank">
-                        <Icon name="facebook" title="Иконка фейсбука" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/" target="_blank">
-                        <Icon name="twitter" title="Иконка твиттера" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://linkedin.com" target="_blank">
-                        <Icon name="linkedin" title="Иконка линкедина" width={24} height={24} class="text-background-50" />
-                    </a>
+                    <ul class="grid items-center grid-cols-1 max-vsm:grid-cols-3 max-vvsm:grid-cols-2 gap-y-1.5 ">
+                        {footer.socials.map((socialsItem: Social)=>
+                        <li class="font-light max-vsm:flex max-vsm:justify-center max-vsm:items-center">
+                        <a href={socialsItem.url} target="_blank" class="flex gap-2 items-center">
+                            <Icon name={socialsItem.name} title={socialsItem.name} width={16} height={16} />
+                            <p class="first-letter:uppercase">{socialsItem.name}</p>
+                            </a>
+                            </li>
+                        )}
+                    </ul>
                 </li>
             </ul>
         </div>

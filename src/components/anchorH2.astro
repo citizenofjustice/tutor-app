@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type Props = {
+  ariaLabel: string,
+  text: string
+  id: string
+}
+const { ariaLabel, text, id } = Astro.props;
+const href = `#${id}`
+---
+
+<span {id}>
+  <a aria-label={ariaLabel} {href} class="relative z-0 hover:text-primary-500 flex flex-row items-center gap-1 first:*:hover:opacity-50">
+    <Icon name="hash" class="opacity-0 bottom-5 w-5 h-5"/>
+    <h2 class="text-2xl font-bold bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent w-fit">
+      {text}
+    </h2>
+  </a>
+</span>

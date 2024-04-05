@@ -1,0 +1,72 @@
+{
+  "main": [
+    {
+      "name": "Главная",
+      "url": "/"
+    },
+    {
+      "name": "Обо мне",
+      "url": "/about"
+    },
+    {
+      "name": "Прайс‑лист",
+      "url": "/prices"
+    }
+  ],
+  "footer": {
+    "footerMenu": [
+      {
+        "category": "Основые ссылки",
+        "items": [
+          {
+            "name": "О зянятиях",
+            "url": "/#lessons"
+          },
+          {
+            "name": "Отзывы",
+            "url": "/#studens-reviews"
+          },
+          {
+            "name": "Обо мне",
+            "url": "/about"
+          },
+          {
+            "name": "Прайс‑лист",
+            "url": "/prices"
+          }
+        ]
+      },
+      {
+        "category": "Доп. информация",
+        "items": [
+          {
+            "name": "Контакты",
+            "url": "/#"
+          },
+          {
+            "name": "Политика безопасности",
+            "url": "/#"
+          }
+        ]
+      }
+    ],
+    "socials": [
+      {
+        "name": "instagram",
+        "url": "https://www.instagram.com/"
+      },
+      {
+        "name": "facebook",
+        "url": "https://facebook.com"
+      },
+      {
+        "name": "twitter",
+        "url": "https://twitter.com/"
+      },
+      {
+        "name": "linkedin",
+        "url": "https://linkedin.com/"
+      }
+    ]
+  }
+}
