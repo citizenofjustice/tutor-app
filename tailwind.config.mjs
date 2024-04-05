@@ -13,6 +13,7 @@ export default {
     },
     extend: {
       screens: {
+        vvsm: "325px",
         vsm: "425px",
       },
       colors: {

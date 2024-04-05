@@ -24,27 +24,35 @@ const { footer }: { footer: Footer } = menu;
 
 <footer class="bottom-0 bg-primary-500 rounded-t-2xl">
     <div class="px-24 pt-10 pb-2 max-sm:px-5 max-sm:pt-6 max-sm:pb-2 max-w-7xl mx-auto">
-        <div class="flex justify-between">
+        <div class="flex max-vsm:flex-col justify-between space-x-2 max-vsm:space-y-4 max-vsm:space-x-0">
             {footer.footerMenu.map((footerMenu: FooterMenu) => 
-                <ul class="flex flex-col items-start gap-0.5 text-background-50">
+                <ul class="text-background-50">
                     <li class="font-bold underline decoration-primary-200">{footerMenu.category}</li>
-                    {
-                        footerMenu.items.map((menuItem: FooterCategoryItem)=>
-                            <li class="font-light"><a href={menuItem.url}>{menuItem.name}</a></li>
-                        )
-                    }
+                    <li>
+                        <ul class="grid items-center grid-cols-1 max-vsm:grid-cols-3 max-vvsm:grid-cols-2 gap-y-1.5">
+                            {footerMenu.items.map((menuItem: FooterCategoryItem)=>
+                                <li class="font-light max-vsm:text-center">
+                                    <a href={menuItem.url}>{menuItem.name}</a>
+                                    </li>
+                                )}
+                        </ul>
+                    </li>
                 </ul>
             )}
-            <ul class="flex flex-col items-start gap-0.5 text-background-50">
+            <ul class="text-background-50">
                 <li class="font-bold underline decoration-primary-200">Соц. сети</li>
-                {footer.socials.map((socialsItem: Social)=>
-                    <li class="font-light">
+                <li>
+                    <ul class="grid items-center grid-cols-1 max-vsm:grid-cols-3 max-vvsm:grid-cols-2 gap-y-1.5 ">
+                        {footer.socials.map((socialsItem: Social)=>
+                        <li class="font-light max-vsm:flex max-vsm:justify-center max-vsm:items-center">
                         <a href={socialsItem.url} target="_blank" class="flex gap-2 items-center">
                             <Icon name={socialsItem.name} title={socialsItem.name} width={16} height={16} />
                             <p class="first-letter:uppercase">{socialsItem.name}</p>
-                        </a>
-                    </li>
-                )}
+                            </a>
+                            </li>
+                        )}
+                    </ul>
+                </li>
             </ul>
         </div>
         <div class="flex flex-col items-center text-sm font-semibold text-background-50 max-sm:static max-sm:mt-2">

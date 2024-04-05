@@ -48,7 +48,7 @@ const pricesCollection = defineCollection({
     disciplines: z.array(
       z.object({
         label: z.string(),
-        price: z.string(),
+        price: z.number(),
       })
     ),
   }),
