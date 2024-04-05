@@ -1,34 +1,50 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+import menu from "@/config/menu.json"
+
+interface Social {
+    name: string,
+    url: string,
+}
+interface FooterCategoryItem {
+    name: string,
+    url: string
+}
+interface FooterMenu {
+    category: string,
+    items: FooterCategoryItem[]
+}
+interface Footer {
+    footerMenu: FooterMenu[],
+    socials: Social[],
+}
+const { footer }: { footer: Footer } = menu;
 ---
 
 <footer class="bottom-0 bg-primary-500 rounded-t-2xl">
     <div class="px-24 pt-10 pb-2 max-sm:px-5 max-sm:pt-6 max-sm:pb-2 max-w-7xl mx-auto">
         <div class="flex justify-between">
-            <ul class="flex items-center gap-3 text-background-50">
-                <li class="font-semibold">Связаться</li>
-            </ul>
-            <ul class="flex items-center gap-3">
-                <li>
-                    <a href="https://www.instagram.com/" target="_blank">
-                        <Icon name="instagram" title="Иконка инстаграма" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://facebook.com" target="_blank">
-                        <Icon name="facebook" title="Иконка фейсбука" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/" target="_blank">
-                        <Icon name="twitter" title="Иконка твиттера" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
-                <li>
-                    <a href="https://linkedin.com" target="_blank">
-                        <Icon name="linkedin" title="Иконка линкедина" width={24} height={24} class="text-background-50" />
-                    </a>
-                </li>
+            {footer.footerMenu.map((footerMenu: FooterMenu) => 
+                <ul class="flex flex-col items-start gap-0.5 text-background-50">
+                    <li class="font-bold underline decoration-primary-200">{footerMenu.category}</li>
+                    {
+                        footerMenu.items.map((menuItem: FooterCategoryItem)=>
+                            <li class="font-light"><a href={menuItem.url}>{menuItem.name}</a></li>
+                        )
+                    }
+                </ul>
+            )}
+            <ul class="flex flex-col items-start gap-0.5 text-background-50">
+                <li class="font-bold underline decoration-primary-200">Соц. сети</li>
+                {footer.socials.map((socialsItem: Social)=>
+                    <li class="font-light">
+                        <a href={socialsItem.url} target="_blank" class="flex gap-2 items-center">
+                            <Icon name={socialsItem.name} title={socialsItem.name} width={16} height={16} />
+                            <p class="first-letter:uppercase">{socialsItem.name}</p>
+                        </a>
+                    </li>
+                )}
             </ul>
         </div>
         <div class="flex flex-col items-center text-sm font-semibold text-background-50 max-sm:static max-sm:mt-2">

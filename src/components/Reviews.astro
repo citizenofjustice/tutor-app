@@ -1,12 +1,14 @@
 ---
+import H2 from './anchorH2.astro';
 import { Image } from 'astro:assets';
+
 import { getEntry } from 'astro:content';
 const reviewContent = await getEntry("reviews", "index");
 const { reviews } = reviewContent.data;
 ---
 
 <section class="space-y-4">
-    <h2 class="text-2xl font-bold indent-8 bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent w-fit">Отзывы учеников</h2>
+    <H2 text="Отзывы учеников" id='studens-reviews' ariaLabel='Отзывы учеников' />
     <ul class="grid grid-cols-4 max-xl:grid-cols-2 max-sm:grid-cols-1 max-xl:grid-rows-2 max-sm:grid-rows-none items-stretch mx-auto gap-4 w-fit">
         {reviews.map((review)=>
             <li class="shadow shadow-primary-200 rounded-lg bg-secondary-50 max-w-72 max-sm:max-w-none p-4">

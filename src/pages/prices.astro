@@ -12,18 +12,18 @@ const { title, disciplines } = prices.data;
 <Layout title="Обо мне | Репетитор по биологии, анатомии и т.д.">
     <Main>
         <H1 text={title}/>
-        <table class="border-separate border-spacing-1 rounded border border-red-500 text-text-800 w-full">
+        <table class="border-separate border-spacing-1 rounded border border-red-500 text-text-800 w-full max-w-4xl mx-auto max-vsm:text-sm font-semibold">
             <thead>
                 <tr class="rounded-t-lg font-bold bg-primary-200">
                     <td class="border rounded border-secondary-300 px-3 py-1">Дисциплина</td>
-                    <td class="border rounded border-secondary-300 px-3 py-1 text-center">Цена (за 60 мин.)</td>
+                    <td class="border rounded border-secondary-300 px-3 py-1 text-center w-[180px] max-sm:w-fit">Цена (за 60 мин.)</td>
                 </tr>
             </thead>
             <tbody>
                 {disciplines.map(discipline =>
                     <tr class="bg-secondary-50">
                         <td class="border rounded border-secondary-300 px-3 py-1">{discipline.label}</td>
-                        <td class="border rounded border-secondary-300 px-3 py-1 text-end">{discipline.price}</td>
+                        <td class="border rounded border-secondary-300 px-3 py-1 text-end max-vsm:text-center">{discipline.price}</td>
                     </tr>
                 )}
             </tbody>

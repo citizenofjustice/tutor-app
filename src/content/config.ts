@@ -28,14 +28,6 @@ const homepageCollection = defineCollection({
       title: z.string(),
     }),
     methods: z.array(methodSchema),
-    // reviews: z.array(
-    //   z.object({
-    //     author: z.string(),
-    //     photo: image(),
-    //     discipline: z.string(),
-    //     text: z.string(),
-    //   })
-    // ),
   }),
 });
 
@@ -43,8 +35,10 @@ const aboutCollection = defineCollection({
   schema: z.object({
     name: z.string(),
     education: z.string(),
+    experince: z.string(),
     email: z.string().email(),
     phone: z.string(),
+    aboutMe: z.array(z.string()),
   }),
 });
 
