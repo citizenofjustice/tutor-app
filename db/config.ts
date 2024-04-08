@@ -1,17 +1,16 @@
-import type { number } from "astro/zod";
 import { column, defineDb, defineTable } from "astro:db";
 
 const Schedule = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     studentId: column.number({ references: () => Student.columns.id }),
-    date: column.number({ references: () => Date.columns.id }),
-    slot: column.number({ references: () => Slot.columns.id }),
-    discipline: column.number({ references: () => Discipline.columns.id }),
+    dateId: column.number({ references: () => Calendar.columns.id }),
+    slotId: column.number({ references: () => Slot.columns.id }),
+    disciplineId: column.number({ references: () => Discipline.columns.id }),
   },
 });
 
-const Date = defineTable({
+const Calendar = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
     date: column.date(),
@@ -46,5 +45,5 @@ const Discipline = defineTable({
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Schedule, Slot, Date, Student, Discipline },
+  tables: { Schedule, Slot, Calendar, Student, Discipline },
 });
