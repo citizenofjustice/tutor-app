@@ -11,6 +11,10 @@
     {
       "name": "Прайс‑лист",
       "url": "/prices"
+    },
+    {
+      "name": "Запись",
+      "url": "/signup"
     }
   ],
   "footer": {

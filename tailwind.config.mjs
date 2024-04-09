@@ -31,6 +31,7 @@ export default {
           950: "var(--text-950)",
         },
         background: {
+          DEFAULT: "hsl(var(--background))",
           50: "var(--background-50)",
           100: "var(--background-100)",
           200: "var(--background-200)",
@@ -43,7 +44,13 @@ export default {
           900: "var(--background-900)",
           950: "var(--background-950)",
         },
+        foreground: "hsl(var(--foreground))",
+        card: "hsl(var(--card))",
+        "card-foreground": "hsl(var(--card-foreground))",
+        popover: "hsl(var(--popover))",
+        "popover-foreground": "hsl(var(--popover-foreground))",
         primary: {
+          DEFAULT: "hsl(var(--primary))",
           50: "var(--primary-50)",
           100: "var(--primary-100)",
           200: "var(--primary-200)",
@@ -56,7 +63,9 @@ export default {
           900: "var(--primary-900)",
           950: "var(--primary-950)",
         },
+        "primary-foreground": "hsl(var(--primary-foreground))",
         secondary: {
+          DEFAULT: "hsl(var(--secondary))",
           50: "var(--secondary-50)",
           100: "var(--secondary-100)",
           200: "var(--secondary-200)",
@@ -69,7 +78,11 @@ export default {
           900: "var(--secondary-900)",
           950: "var(--secondary-950)",
         },
+        "secondary-foreground": "hsl(var(--secondary-foreground))",
+        muted: "hsl(var(--muted))",
+        "muted-foreground": "hsl(var(--muted-foreground))",
         accent: {
+          DEFAULT: "hsl(var(--accent))",
           50: "var(--accent-50)",
           100: "var(--accent-100)",
           200: "var(--accent-200)",
@@ -82,6 +95,12 @@ export default {
           900: "var(--accent-900)",
           950: "var(--accent-950)",
         },
+        "accent-foreground": "hsl(var(--accent-foreground))",
+        destructive: "hsl(var(--destructive))",
+        "destructive-foreground": "hsl(var(--destructive-foreground))",
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
       },
       keyframes: {
         "accordion-down": {

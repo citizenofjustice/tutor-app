@@ -1,0 +1,32 @@
+---
+import { db, Calendar, between, and, eq } from 'astro:db';
+import Layout from "@/layouts/Layout.astro";
+import DateSelect from "@/components/DateSelect";
+import BreadcrumbPath from "@/components/BreadcrumbPath";
+
+const paths = [
+    {
+        name: 'Главная',
+        url: '/'
+    },
+    {
+        name: 'Выбор даты',
+        url: 'calendar'
+    },
+]
+
+const today = new Date();
+const fday = new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000);
+
+const dates = await db.select().from(Calendar).where(and(between(Calendar.date, today, fday), eq(Calendar.isWorking, true)));
+---
+
+<Layout title="Обо мне | Репетитор по биологии, анатомии и т.д.">
+    <section class="flex justify-center">
+        <div class="grid">
+            <BreadcrumbPath pathElements={paths} client:visible/>
+            
+            <DateSelect activeDates={dates} client:visible />
+        </div>
+    </section>
+</Layout>

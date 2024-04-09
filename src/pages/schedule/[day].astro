@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  return [
+    {params: {day: '1'}},
+    {params: {day: '2'}},
+    {params: {day: '3' }}
+  ]
+}
+
+const { day } = Astro.params;
+
+---
+
+<Layout title="Обо мне | Репетитор по биологии, анатомии и т.д.">
+    <section class="flex justify-center">
+        <div class="grid">
+            { day } 
+        </div>
+    </section>
+</Layout>

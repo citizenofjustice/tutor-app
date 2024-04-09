@@ -3,12 +3,8 @@
   "compilerOptions": {
     "baseUrl": "E:/portfolio/tutor-app",
     "paths": {
-      "@/components/*": [
-        "./src/layouts/components/*"
-      ],
-      "@/*": [
-        "./src/*"
-      ]
+      "@/components/*": ["./src/components/*"],
+      "@/*": ["./src/*"]
     },
     "jsx": "react-jsx",
     "jsxImportSource": "react"
