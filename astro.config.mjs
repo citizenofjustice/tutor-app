@@ -7,8 +7,9 @@ import storyblok from "@storyblok/astro";
 import basicSsl from "@vitejs/plugin-basic-ssl";
 const env = loadEnv("", process.cwd(), "STORYBLOK");
 import react from "@astrojs/react";
-
 import db from "@astrojs/db";
+
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,4 +33,6 @@ export default defineConfig({
     }),
     db(),
   ],
+  output: "hybrid",
+  adapter: vercel(),
 });

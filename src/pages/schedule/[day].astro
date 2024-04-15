@@ -1,22 +1,38 @@
 ---
+import BreadcrumbPath from "@/components/BreadcrumbPath";
 import Layout from "@/layouts/Layout.astro";
+import { db, Slot } from 'astro:db';
 
-export async function getStaticPaths() {
-  return [
-    {params: {day: '1'}},
-    {params: {day: '2'}},
-    {params: {day: '3' }}
-  ]
+export const prerender = false;
+
+let currentDay = '';
+const { day } = Astro.params;
+if (day) {
+  currentDay = new Date(day).toLocaleDateString();
 }
 
-const { day } = Astro.params;
+const paths = [
+    {
+        name: 'Главная',
+        url: '/'
+    },
+    {
+        name: 'Выбор даты',
+        url: 'calendar'
+    },
+    {
+        name: currentDay,
+        url: '#'
+    },
+]
 
 ---
 
 <Layout title="Обо мне | Репетитор по биологии, анатомии и т.д.">
     <section class="flex justify-center">
-        <div class="grid">
-            { day } 
+      <div class="grid">
+          <BreadcrumbPath pathElements={paths} client:visible/>
+          <h1>{currentDay}</h1>
         </div>
     </section>
 </Layout>
