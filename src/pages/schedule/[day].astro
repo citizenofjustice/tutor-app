@@ -1,5 +1,6 @@
 ---
 import BreadcrumbPath from "@/components/BreadcrumbPath";
+import SlotList from "@/components/SlotList.astro";
 import Layout from "@/layouts/Layout.astro";
 import { db, Slot } from 'astro:db';
 
@@ -33,6 +34,7 @@ const paths = [
       <div class="grid">
           <BreadcrumbPath pathElements={paths} client:visible/>
           <h1>{currentDay}</h1>
+          <SlotList />
         </div>
     </section>
 </Layout>
