@@ -34,7 +34,7 @@ const paths = [
       <div class="grid">
           <BreadcrumbPath pathElements={paths} client:visible/>
           <h1>{currentDay}</h1>
-          <SlotList />
+          <SlotList currentDay={currentDay} />
         </div>
     </section>
 </Layout>

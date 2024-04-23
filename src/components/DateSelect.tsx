@@ -37,8 +37,6 @@ const DateSelect: React.FC<{
     { after: new Date(today.getTime() + 14 * 24 * 60 * 60 * 1000) },
   ];
 
-  console.log(disabledDays);
-
   const handleScheduleOpen = (date: Date) => {
     const chosenDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     navigate(`schedule/${chosenDate}`);

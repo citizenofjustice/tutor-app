@@ -1,22 +1,43 @@
 ---
 import { Icon } from "astro-icon/components";
+import { between } from "astro:db";
+import { column } from "astro:db";
+import { db, Calendar } from 'astro:db';
+import { eq } from "astro:db";
 
 const slots = [
     {id: 1, time: '08:00 - 09:00'},
     {id: 2, time: '09:00 - 00:00'},
     {id: 3, time: '10:00 - 11:00'},
-    {id: 4, time: '11:00 - 13:00'},
+    {id: 4, time: '11:00 - 12:00'},
+    {id: 5, time: '12:00 - 13:00'},
     {id: 5, time: '13:00 - 14:00'},
     {id: 6, time: '14:00 - 15:00'},
     {id: 7, time: '15:00 - 16:00'},
     {id: 8, time: '16:00 - 17:00'},
+    {id: 9, time: '17:00 - 18:00'},
+    {id: 10, time: '18:00 - 19:00'},
+    {id: 11, time: '19:00 - 20:00'},
+    {id: 12, time: '20:00 - 21:00'},
+    {id: 13, time: '21:00 - 22:00'},
 ];
+
+const { currentDay } = Astro.props;
+const day = await db.select().from(Calendar);
+
+// .where(eq(Calendar.date, currentDay));
+console.log(day);
+// console.log(currentDay);
+
+const start = new Date().setHours(0);
+// const slots = []
+
 ---
 
 <ul class="flex-row space-y-1 p-1 bg-secondary-100 rounded border border-primary-500 text-text-800 ">
     {slots.map(item=>
         <li class="[&:nth-child(4n)&:not(:last-child)]:mb-4 bg-secondary-50 border rounded border-secondary-400 px-2 py-1 flex justify-between gap-x-4">
-            <div class="shrink border border-primary-500 px-2 rounded">{item.id}</div>
+            <div class="shrink border border-primary-500 rounded w-8 text-center">{item.id}</div>
             <div class="grow">{item.time}</div>
             <div class="shrink flex items-center">
                 <Icon name="info" title="info" width={20} height={20} />    

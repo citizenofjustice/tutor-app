@@ -1,4 +1,5 @@
-import { column, defineDb, defineTable } from "astro:db";
+import { number } from "astro/zod";
+import { between, column, defineDb, defineTable } from "astro:db";
 
 const Schedule = defineTable({
   columns: {
@@ -15,13 +16,18 @@ const Calendar = defineTable({
     id: column.number({ primaryKey: true }),
     date: column.date(),
     isWorking: column.boolean(),
+    minBetweenClasses: column.number({ default: 15 }),
+    workdayStart: column.number({ default: 8 }),
+    workdayEnd: column.number({ default: 20 }),
   },
 });
 
 const Slot = defineTable({
   columns: {
     id: column.number({ primaryKey: true }),
-    number: column.number(),
+    dayId: column.number({ references: () => Calendar.columns.id }),
+    start: column.date(),
+    end: column.date(),
     isTaken: column.boolean(),
     isNotWorking: column.boolean(),
   },
