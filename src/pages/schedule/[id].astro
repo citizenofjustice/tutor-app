@@ -2,14 +2,19 @@
 import BreadcrumbPath from "@/components/BreadcrumbPath";
 import SlotList from "@/components/SlotList.astro";
 import Layout from "@/layouts/Layout.astro";
-import { db, Slot } from 'astro:db';
+import { eq } from "astro:db";
+import { db, Slot, Calendar } from 'astro:db';
 
 export const prerender = false;
 
 let currentDay = '';
-const { day } = Astro.params;
-if (day) {
-  currentDay = new Date(day).toLocaleDateString();
+const { dayId } = Astro.params;
+
+if (dayId) {
+  const day = await db.select().from(Calendar).where(eq(Calendar.id, Number(dayId)));
+  // currentDay = new Date(day).toLocaleDateString();
+  console.log(day);
+  
 }
 
 const paths = [

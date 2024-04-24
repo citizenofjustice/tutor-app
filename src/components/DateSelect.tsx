@@ -4,6 +4,7 @@ import { ru } from "date-fns/locale";
 import { navigate } from "astro/virtual-modules/transitions-router.js";
 
 interface CalendarDate {
+  id: number;
   date: Date;
   isWorking: boolean;
 }
@@ -38,8 +39,11 @@ const DateSelect: React.FC<{
   ];
 
   const handleScheduleOpen = (date: Date) => {
-    const chosenDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    navigate(`schedule/${chosenDate}`);
+    // const chosenDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    const dayData = activeDates.find(
+      (day) => day.date.getTime() === date.getTime()
+    );
+    if (dayData) navigate(`schedule/${dayData.id}`);
   };
 
   return (
